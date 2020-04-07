@@ -5,3 +5,4 @@ Conditional Rendering--> Creating a component which has one props called text. I
 
 Age Check --> Inputs name and age. When the button is pressed, it shows hello name if age is equal or greater than 18 else prints you are too young. 
 
+Open Trivia --> Showing new random trivia question to the user when the button is pressed. Open Trivia Database API is use. 
