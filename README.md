@@ -11,4 +11,7 @@ Fetch List of Persons --> To fetch the list of person and also show their avatar
 
 Github Repos--> Showing the list of repositories by using react as a keyword.
 
+Weather API --> Create a React component that shows temperature and description of the weather in my city. 
+
+
 
