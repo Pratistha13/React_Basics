@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Fetch List Person</title>
+</head>
+
+<body>
+    <!-- Root container for react components -->
+    <div id="root"></div>
+
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+
+    <script type="text/babel">
+
+
+function FetchList() {
+
+    const[persons, setPersons] = React.useState([]);
+    
+    React.useEffect(()=> {
+        fetch('https://reqres.in/api/users')
+        .then(response=> response.json())
+        .then(responseData => {
+            setPersons(responseData.data)      
+    });
+    },[]);
+    return(
+        <div>
+            <h1>Persons</h1>
+           <table>
+            <tbody>
+            <tr>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Email</th>
+            </tr>
+            {
+               persons.map((persons, index) =>
+               <tr key={index}>
+               <td>{persons.first_name}</td>
+               <td>{persons.last_name}</td>
+               <td>{persons.email}</td>
+               <td>{<img src = {persons.avatar}/>}></td>
+            </tr>)
+            }
+            </tbody>
+           </table>
+
+        </div>
+        );
+        }
+
+        ReactDOM.render(<FetchList/>, document.getElementById("root"));
+    </script>
+</body>
+</html>
