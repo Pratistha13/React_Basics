@@ -9,4 +9,6 @@ Open Trivia --> Showing new random trivia question to the user when the button i
 
 Fetch List of Persons --> To fetch the list of person and also show their avatar. 
 
+Github Repos--> Showing the list of repositories by using react as a keyword.
+
 
