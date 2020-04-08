@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Open Trivia</title>
+    <title>Weather Input</title>
 </head>
 
 <body>
@@ -20,6 +20,8 @@
 const WeatherApi=()=> {
     const[weather, setWeather] = React.useState('');
     const[city, setCity]=React.useState('');
+    const[temp,setTemp]= React.useState('');
+    const[description,setDescription]= React.useState('');
 
     const  inputChanged= (event) => {
             event.preventDefault();
@@ -32,7 +34,8 @@ const WeatherApi=()=> {
             fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&APPID&appid=1da67147db3bce17d050145b4be973b7`)
             .then(response => response.json()) 
             .then(responseData => { 
-                setWeather(responseData.weather)
+                setDescription(responseData.weather[0].description);
+                setTemp(responseData.main.temp);
           })
         }
     return(
@@ -41,9 +44,9 @@ const WeatherApi=()=> {
             <input type="text" name="city" value={city} onChange = {inputChanged}/>
             <input type="submit" value="Get Weather"/>
             </form>
-            Temperature: {weather.temp} Celsius
+            Temperature: {temp} Celsius
             <br />
-            Weather: {weather.description}
+            Weather: {description}
         </div>
         )}
 
