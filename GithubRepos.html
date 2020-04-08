@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Fetch Git hub repos</title>
+</head>
+
+<body>
+    <!-- Root container for react components -->
+    <div id="root"></div>
+
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+
+    <script type="text/babel">
+
+
+function GithubRepos() {
+    const[items, setItem]= React.useState([]);
+    const[full_name, setFullName] = React.useState([]);
+    const[html_url,setHtmlurl]= React.useState([]);
+
+    
+    React.useEffect(()=> {
+        fetch('https://api.github.com/search/repositories?q=react')
+        .then(response=> response.json())
+        .then(responseData => {
+
+            setItem(responseData.items)    
+    });
+    },[]);
+    return(
+        <div>
+            <h1>Repositories</h1>
+           <table>
+            <tbody>
+            <tr>
+                <th>Name</th>
+                <th>URL</th>
+            </tr>
+            {
+               items.map((item, index) =>
+               <tr key={index}>
+               <td>{item.full_name}</td>
+               <td>{item.html_url}</td>
+            </tr>)
+            }
+            </tbody>
+           </table>
+
+        </div>
+        );
+        }
+
+        ReactDOM.render(<GithubRepos/>, document.getElementById("root"));
+    </script>
+</body>
+</html>
